@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ────────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { @apply box-border; }
+  html { @apply scroll-smooth; }
+
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans antialiased;
+    min-height: 100vh;
+    font-feature-settings: "cv02","cv03","cv04","cv11";
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { @apply bg-slate-100; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-300 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-slate-400; }
+  ::selection { @apply bg-brand-100 text-brand-800; }
+}
+
+/* ─── Components ─────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* Cards */
+  .card    { @apply bg-white border border-slate-200 rounded-xl; box-shadow: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04); }
+  .card-md { @apply bg-white border border-slate-200 rounded-xl; box-shadow: 0 4px 6px -1px rgba(15,23,42,0.07), 0 2px 4px -1px rgba(15,23,42,0.04); }
+  .card-lg { @apply bg-white border border-slate-200 rounded-2xl; box-shadow: 0 10px 15px -3px rgba(15,23,42,0.08), 0 4px 6px -2px rgba(15,23,42,0.04); }
+
+  /* ── Buttons ────────────────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
+           transition-all duration-200 cursor-pointer select-none relative overflow-hidden;
+  }
+
+  /* Ripple on all buttons */
+  .btn::after {
+    content: '';
+    @apply absolute inset-0 rounded-lg opacity-0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.35) 0%, transparent 70%);
+    transition: opacity 0.3s;
+  }
+  .btn:active::after { @apply opacity-100; }
+
+  .btn-primary {
+    @apply btn bg-brand-600 text-white hover:bg-brand-700 active:scale-[0.97];
+    box-shadow: 0 1px 2px rgba(217,119,6,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+    transition: background 0.15s, box-shadow 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 4px 16px rgba(217,119,6,0.4), inset 0 1px 0 rgba(255,255,255,0.12);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-slate-700 border border-slate-200
+           hover:bg-slate-50 hover:border-slate-300 active:scale-[0.97];
+    box-shadow: 0 1px 2px rgba(15,23,42,0.05);
+  }
+  .btn-secondary:hover { box-shadow: 0 2px 8px rgba(15,23,42,0.08); transform: translateY(-1px); }
+
+  .btn-ghost  { @apply btn text-slate-600 hover:bg-slate-100 hover:text-slate-800 active:scale-[0.97]; }
+  .btn-danger { @apply btn bg-danger-light text-danger-text border border-danger-border hover:bg-red-100; }
+  .btn-sm     { @apply px-3 py-1.5 text-xs rounded-md; }
+  .btn-lg     { @apply px-6 py-3 text-base rounded-xl; }
+
+  /* ── Inputs ─────────────────────────────────────────────────────────────── */
+  .input {
+    @apply w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm
+           text-slate-800 placeholder-slate-400 outline-none
+           focus:border-brand-500 transition-all duration-200;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  }
+  .input:focus { box-shadow: 0 0 0 3px rgba(245,158,11,0.12), 0 1px 2px rgba(15,23,42,0.04); }
+  .input:hover:not(:focus) { @apply border-slate-300; }
+  textarea.input { @apply resize-none; }
+
+  /* ── Badges ─────────────────────────────────────────────────────────────── */
+  .badge         { @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium; }
+  .badge-success { @apply badge bg-success-mid text-success-text; }
+  .badge-warning { @apply badge bg-warning-mid text-warning-text; }
+  .badge-danger  { @apply badge bg-danger-mid  text-danger-text;  }
+  .badge-info    { @apply badge bg-info-mid    text-info-text;    }
+  .badge-neutral { @apply badge bg-slate-100   text-slate-600;    }
+
+  /* Status dots */
+  .dot-live    { @apply w-2 h-2 rounded-full bg-success-dot animate-pulse-dot; }
+  .dot-danger  { @apply w-2 h-2 rounded-full bg-danger-dot; }
+  .dot-warning { @apply w-2 h-2 rounded-full bg-warning-dot; }
+
+  /* ── Navigation ──────────────────────────────────────────────────────────── */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all duration-150 cursor-pointer;
+  }
+  .nav-item-active {
+    @apply bg-brand-50 text-brand-700 hover:bg-brand-50 hover:text-brand-700;
+    box-shadow: inset 3px 0 0 theme('colors.brand.600');
+  }
+  .section-label { @apply text-xs font-semibold uppercase tracking-widest text-slate-400 px-3 mb-1; }
+
+  /* ── Message Bubbles ─────────────────────────────────────────────────────── */
+  .bubble-user {
+    @apply bg-white border border-slate-200 rounded-2xl rounded-bl-sm px-4 py-3;
+    box-shadow: 0 1px 3px rgba(15,23,42,0.06);
+    animation: bubbleIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  .bubble-bot {
+    @apply bg-brand-600 text-white rounded-2xl rounded-br-sm px-4 py-3;
+    box-shadow: 0 2px 8px rgba(217,119,6,0.25);
+    animation: bubbleIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  @keyframes bubbleIn {
+    from { opacity: 0; transform: scale(0.85) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* ── Typing animation ────────────────────────────────────────────────────── */
+  .typing-dot {
+    @apply w-1.5 h-1.5 rounded-full bg-white/70;
+    animation: typingBounce 1.4s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingBounce {
+    0%,60%,100% { transform: translateY(0); opacity:0.5; }
+    30%         { transform: translateY(-5px); opacity:1; }
+  }
+
+  /* ── Shimmer skeleton ────────────────────────────────────────────────────── */
+  .skeleton {
+    @apply rounded-lg bg-slate-100;
+    background: linear-gradient(90deg, #f1f5f9 25%, #e9eef4 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+
+  /* ── Landing: Gradient text ──────────────────────────────────────────────── */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #b45309 0%, #f59e0b 45%, #fcd34d 100%);
+    background-size: 200% 200%;
+    animation: gradientX 5s ease infinite;
+  }
+
+  /* ── Landing: Feature card hover (3D tilt) ───────────────────────────────── */
+  .feature-card {
+    @apply card p-6 transition-all duration-300 cursor-default;
+    transform-style: preserve-3d;
+    will-change: transform, box-shadow;
+  }
+  .feature-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(15,23,42,0.08), 0 4px 6px -2px rgba(15,23,42,0.04);
+    transform: translateY(-4px);
+  }
+  .feature-card:hover .feature-icon-wrap { box-shadow: 0 0 12px rgba(245,158,11,0.25); }
+
+  .feature-icon-wrap {
+    @apply w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-all duration-300;
+    background: linear-gradient(135deg, #fffbf0 0%, #fef3c7 100%);
+  }
+
+  /* ── Landing: Animated pipeline connector ────────────────────────────────── */
+  .pipeline-line {
+    @apply flex-shrink-0 relative overflow-hidden;
+  }
+  .pipeline-line::after {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    background: linear-gradient(90deg, transparent, rgba(245,158,11,0.6), transparent);
+    animation: pipelineFlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pipelineFlow {
+    0%   { transform: translateX(-100%); opacity: 0; }
+    50%  { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+
+  /* ── Dashboard: Stat card entry ──────────────────────────────────────────── */
+  .stat-card-value {
+    @apply text-xl font-bold tabular-nums;
+    animation: countUp 0.6s ease-out both;
+  }
+
+  /* ── Overlay ─────────────────────────────────────────────────────────────── */
+  .overlay { @apply fixed inset-0 bg-slate-900/25 backdrop-blur-[2px] z-40; }
+
+  /* ── Page transitions ────────────────────────────────────────────────────── */
+  .page-enter {
+    animation: pageEnter 0.45s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes pageEnter {
+    from { opacity: 0; transform: scale(0.975) translateY(8px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ── Code block ──────────────────────────────────────────────────────────── */
+  .code-block {
+    @apply font-mono text-[11px] bg-slate-900 text-slate-300 px-4 py-3 rounded-lg overflow-x-auto leading-relaxed;
+  }
+
+  /* ── Animated gradient border ────────────────────────────────────────────── */
+  .gradient-border {
+    position: relative;
+    border-radius: 1rem;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(245,158,11,0.4), rgba(251,191,36,0.3), rgba(245,158,11,0.4));
+    background-size: 200% 200%;
+    animation: gradientX 4s ease infinite;
+    z-index: -1;
+  }
+
+  /* ── Grid background ────────────────────────────────────────────────────── */
+  .bg-dot-grid {
+    background-image: radial-gradient(circle, rgba(15,23,42,0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .bg-line-grid {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}

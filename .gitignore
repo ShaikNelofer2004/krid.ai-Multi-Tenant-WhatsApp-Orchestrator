@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.env.local
+
+# Secrets — NEVER commit these
+backend/.env
+*.env
+
+# Node
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# MongoDB dumps
+*.bson
+dump/
+
+# Temp scripts (optional to keep)
+backend/clear_history.py
+backend/set_tenant_twilio_creds.py
