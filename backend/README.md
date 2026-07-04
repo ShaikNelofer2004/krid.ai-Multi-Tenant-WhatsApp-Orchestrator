@@ -165,7 +165,7 @@ DEBUG=false
 {
   "_id": "ObjectId",
   "tenant_id": "tenant_a",
-  "name": "Luxe Haven Furniture",
+  "name": "The Grand Emporium",
   "system_prompt": "You are an elegant sales assistant...",
   "product_knowledge": "LUXE HAVEN\nSovereign Sofa Set - ₹2,85,000...",
   "media_library": {
@@ -452,8 +452,8 @@ Returns all tenants (excludes `system_prompt` for brevity).
 
 ```json
 [
-  { "id": "...", "tenant_id": "tenant_a", "name": "Luxe Haven Furniture" },
-  { "id": "...", "tenant_id": "tenant_b", "name": "PrimeAuto Care" }
+  { "id": "...", "tenant_id": "tenant_a", "name": "The Grand Emporium" },
+  { "id": "...", "tenant_id": "tenant_b", "name": "Speedy Fix Auto" }
 ]
 ```
 

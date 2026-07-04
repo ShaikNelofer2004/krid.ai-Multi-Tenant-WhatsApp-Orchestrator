@@ -22,7 +22,7 @@ React + Vite + Tailwind CSS monitoring dashboard for the WhatsApp AI Orchestrato
 
 The frontend is a **React Single-Page Application** built with Vite. It provides a live monitoring dashboard for business owners to:
 
-- Switch between **Tenant A** (Luxe Haven Furniture) and **Tenant B** (PrimeAuto Care)
+- Switch between **Tenant A** (The Grand Emporium) and **Tenant B** (Speedy Fix Auto)
 - Watch **live conversations** with real-time auto-refresh (every 3–5 seconds)
 - View full **chat threads** with images inline and PDF badges
 - Send **broadcast campaigns** to customers with optional image attachments
